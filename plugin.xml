@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="ch.itomy.processing"
+    version="0.0.1">
+    <name>Image Processing</name>
+
+    <js-module src="www/ImageProcessing.js" name="ImageProcessing">
+        <clobbers target="ImageProcessing" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="ImageProcessing">
+                <param name="android-package" value="ch.itomy.plugin.imageprocessing.ImageProcessing"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+
+        <source-file src="src/android/ImageProcessing.java" target-dir="src/ch/itomy/plugin/imageprocessing" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="ImageProcessing">
+                <param name="ios-package" value="CDVImageProcessing" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVImageProcessing.h" />
+        <source-file src="src/ios/CDVImageProcessing.m" />
+    </platform>
+</plugin>
